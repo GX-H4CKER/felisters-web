@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pretty Felister — Ultimate Luxury Anime Sanctuary ✨</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cinzel, Playfair Display, Cormorant Garamond, Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome & Canvas Confetti -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        champagneGold: '#E5C158',
+                        silkGold: '#D4AF37',
+                        champagneGlow: '#F7E7CE',
+                        cashmereSilk: '#F4EAD4',
+                        parisianRose: '#E0A9AF',
+                        softBlush: '#F3D1D5',
+                        midnightVelvet: '#1A0F1A',
+                        plumVelvet: '#2D1B2D',
+                        plumCard: '#382238'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                        cormorant: ['Cormorant Garamond', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* High-Fashion Royal Canvas Backdrop */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at 50% 0%, #361f36 0%, #1a0f1a 50%, #0d070d 100%);
+            background-attachment: fixed;
+            color: #F4EAD4;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Particle Canvas Overlay */
+        #animeCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Luxury Panels */
+        .glass-pinnacle {
+            background: rgba(45, 27, 45, 0.55);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(229, 193, 88, 0.28);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(229, 193, 88, 0.06);
+        }
+
+        .glass-card {
+            background: rgba(56, 34, 56, 0.65);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(224, 169, 175, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Shimmering Metallic Gold Typography */
+        .gold-metallic-text {
+            background: linear-gradient(135deg, #FFF6D1 0%, #E5C158 40%, #B88E28 70%, #F7E7CE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(229, 193, 88, 0.25));
+        }
+
+        /* Candle Flame Physics */
+        @keyframes candleFlameGlow {
+            0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px #E5C158) drop-shadow(0 0 25px #E0A9AF); }
+            50% { transform: scale(1.18) translateY(-3px) rotate(1deg); filter: drop-shadow(0 0 22px #F7E7CE) drop-shadow(0 0 35px #E5C158); }
+        }
+        .luxury-flame {
+            animation: candleFlameGlow 1.4s ease-in-out infinite;
+        }
+
+        /* Interactive 3D Flip Card */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .flip-card-flipped {
+            transform: rotateY(180deg);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d070d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #E5C158, #E0A9AF);
+            border-radius: 999px;
+        }
+
+        /* Entry Pop Animation */
+        .pop-entry {
+            animation: pinnaclePop 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes pinnaclePop {
+            0% { opacity: 0; transform: translateY(25px) scale(0.94); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative pb-28 selection:bg-champagneGold selection:text-midnightVelvet">
+
+    <!-- Interactive Falling Sakura & Glowing Dust Canvas -->
+    <canvas id="animeCanvas"></canvas>
+
+    <!-- Ambient Music Audio Toggle -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleAudio()" class="glass-pinnacle rounded-full px-5 py-3 flex items-center gap-3 border border-champagneGold/40 shadow-2xl hover:scale-105 transition-all duration-300">
+            <div id="audioBtnIcon" class="w-10 h-10 rounded-full bg-gradient-to-r from-champagneGold via-silkGold to-parisianRose text-midnightVelvet flex items-center justify-center text-base font-bold shadow-md">
+                ✨
+            </div>
+            <div class="text-left hidden sm:block pr-2">
+                <p class="text-xs font-cinzel font-bold text-cashmereSilk" id="audioTitle">Champagne Chimes</p>
+                <p class="text-[10px] text-parisianRose tracking-wider uppercase font-montserrat" id="audioSub">Ambient Vibe Audio</p>
+            </div>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 glass-pinnacle px-6 sm:px-12 py-4 border-b border-champagneGold/20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-cinzel text-xl sm:text-2xl font-black tracking-widest gold-metallic-text flex items-center gap-2">
+                PRETTY FELISTER <span class="text-xs text-parisianRose font-montserrat tracking-normal font-light">| 👑</span>
+            </a>
+            <div class="flex gap-5 sm:gap-8 text-[11px] font-cinzel font-semibold tracking-widest uppercase text-cashmereSilk/80">
+                <a href="#hero" class="hover:text-champagneGold transition">Sanctuary</a>
+                <a href="#wish" class="hover:text-champagneGold transition">Wish</a>
+                <a href="#cards" class="hover:text-champagneGold transition hidden md:inline-block">Charms</a>
+                <a href="#vault" class="hover:text-champagneGold transition">Vault</a>
+                <a href="#letter" class="hover:text-champagneGold transition hidden sm:inline-block">Letter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-8 space-y-24 relative z-10 pt-10">
+
+        <!-- 1. HERO HEADER SECTION -->
+        <section id="hero" class="glass-pinnacle rounded-3xl p-8 sm:p-20 text-center relative overflow-hidden border border-champagneGold/35 shadow-2xl">
+            <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-champagneGold/10 border border-champagneGold/40 text-champagneGold font-cinzel text-xs tracking-widest uppercase mb-8 shadow-inner">
+                ✨ High Fashion Anime Sanctuary ✨
+            </div>
+            
+            <h1 class="font-cormorant text-5xl sm:text-7xl md:text-8xl italic font-semibold text-cashmereSilk leading-tight">
+                Happy Birthday, <br class="hidden sm:inline">
+                <span class="font-cinzel not-italic font-black gold-metallic-text tracking-wide">Pretty Felister</span>
+            </h1>
+            
+            <p class="font-cormorant text-lg sm:text-2xl text-parisianRose max-w-2xl mx-auto mt-6 font-light leading-relaxed tracking-wide italic">
+                "An absolute royal sanctuary built to celebrate your elegance, timeless charm, and the radiance you bring into the world."
+            </p>
+
+            <div class="mt-12 flex flex-wrap justify-center gap-6">
+                <button onclick="triggerToastConfetti()" class="px-9 py-4 rounded-full bg-gradient-to-r from-champagneGold via-silkGold to-parisianRose text-midnightVelvet font-cinzel font-bold text-xs tracking-widest uppercase shadow-2xl hover:scale-105 transition-all">
+                    Celebrate & Toast 🥂
+                </button>
+                <button onclick="scrollToSection('vault')" class="px-9 py-4 rounded-full glass-card text-cashmereSilk font-cinzel font-semibold text-xs tracking-widest uppercase border border-champagneGold/40 hover:bg-champagneGold/10 hover:scale-105 transition-all">
+                    Explore Memory Vault 📸
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. DYNAMIC CANDLE blowing BIRTHDAY CAKE SECTION -->
+        <section id="wish" class="glass-pinnacle rounded-3xl p-8 sm:p-16 text-center space-y-6 border border-champagneGold/25">
+            <span class="text-xs font-cinzel font-semibold text-champagneGold tracking-widest uppercase">Interactive Celebration</span>
+            <h2 class="font-cormorant text-4xl sm:text-5xl italic text-cashmereSilk">Make A Birthday Wish 🕯️</h2>
+            <p class="text-xs sm:text-sm text-parisianRose/90 font-montserrat max-w-md mx-auto leading-relaxed">
+                Tap the burning golden flame below to blow out your birthday candle and release a secret wish.
+            </p>
+
+            <div class="relative inline-block my-8 cursor-pointer group" onclick="toggleCandle()">
+                <!-- Candle Visual -->
+                <div class="w-60 sm:w-72 h-64 mx-auto relative flex flex-col items-center justify-end">
+                    <!-- Flame -->
+                    <div id="cakeFlame" class="w-6 h-10 bg-gradient-to-t from-champagneGold via-champagneGlow to-white rounded-full luxury-flame mb-2 transition-opacity duration-500"></div>
+                    
+                    <!-- Candle Body -->
+                    <div class="w-7 h-32 bg-gradient-to-b from-cashmereSilk via-softBlush to-parisianRose rounded-t-md border border-white/50 shadow-inner"></div>
+                    
+                    <!-- Pedestal -->
+                    <div class="w-36 h-7 bg-gradient-to-r from-champagneGold via-champagneGlow to-champagneGold rounded-full border border-white/40 shadow-xl"></div>
+                    <div class="w-52 h-10 bg-plumVelvet rounded-b-3xl border-t border-champagneGold/40 flex items-center justify-center">
+                        <span class="text-[11px] font-cinzel tracking-widest text-champagneGold font-bold">PRETTY FELISTER</span>
+                    </div>
+                </div>
+
+                <div id="wishStatusBanner" class="mt-6 inline-block px-8 py-3 rounded-full bg-champagneGold/10 border border-champagneGold/40 text-cashmereSilk font-cinzel text-xs tracking-wider">
+                    Candle is glowing ✨ Tap flame to blow out
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. COMPLIMENT CAROUSEL / 3D FLIP CARDS SECTION -->
+        <section id="cards" class="space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-cinzel font-semibold text-champagneGold tracking-widest uppercase">Praise & Admiration</span>
+                <h2 class="font-cormorant text-4xl sm:text-5xl italic text-cashmereSilk">Charms of Pretty Felister ✨</h2>
+                <p class="text-xs text-parisianRose font-montserrat">Tap any card to uncover a hidden compliment</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="transform-style-3d relative w-full h-full rounded-2xl shadow-xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden glass-card rounded-2xl p-6 border border-champagneGold/30 flex flex-col justify-center items-center text-center">
+                            <div class="w-14 h-14 rounded-full bg-champagneGold/10 text-champagneGold flex items-center justify-center text-2xl mb-4 border border-champagneGold/30">👑</div>
+                            <h3 class="font-cinzel text-base font-bold text-cashmereSilk">Grace & Poise</h3>
+                            <p class="text-xs text-parisianRose mt-2 font-montserrat">Tap to flip card</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-plumCard to-midnightVelvet rounded-2xl p-6 border border-champagneGold flex flex-col justify-center items-center text-center">
+                            <p class="font-cormorant text-xl text-champagneGold italic leading-relaxed font-semibold">"Your elegance is completely effortless, carrying warmth and royal dignity in everything you do."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="transform-style-3d relative w-full h-full rounded-2xl shadow-xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden glass-card rounded-2xl p-6 border border-champagneGold/30 flex flex-col justify-center items-center text-center">
+                            <div class="w-14 h-14 rounded-full bg-champagneGold/10 text-champagneGold flex items-center justify-center text-2xl mb-4 border border-champagneGold/30">🌸</div>
+                            <h3 class="font-cinzel text-base font-bold text-cashmereSilk">Radiant Smile</h3>
+                            <p class="text-xs text-parisianRose mt-2 font-montserrat">Tap to flip card</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-plumCard to-midnightVelvet rounded-2xl p-6 border border-champagneGold flex flex-col justify-center items-center text-center">
+                            <p class="font-cormorant text-xl text-champagneGold italic leading-relaxed font-semibold">"Your smile has an unbelievable charm that brightens even the darkest room instantly."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="h-64 perspective-1000 cursor-pointer" onclick="flipCard(this)">
+                    <div class="transform-style-3d relative w-full h-full rounded-2xl shadow-xl">
+                        <!-- Front -->
+                        <div class="absolute inset-0 backface-hidden glass-card rounded-2xl p-6 border border-champagneGold/30 flex flex-col justify-center items-center text-center">
+                            <div class="w-14 h-14 rounded-full bg-champagneGold/10 text-champagneGold flex items-center justify-center text-2xl mb-4 border border-champagneGold/30">✨</div>
+                            <h3 class="font-cinzel text-base font-bold text-cashmereSilk">Kind Heart</h3>
+                            <p class="text-xs text-parisianRose mt-2 font-montserrat">Tap to flip card</p>
+                        </div>
+                        <!-- Back -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-plumCard to-midnightVelvet rounded-2xl p-6 border border-champagneGold flex flex-col justify-center items-center text-center">
+                            <p class="font-cormorant text-xl text-champagneGold italic leading-relaxed font-semibold">"Behind your stunning beauty is a genuinely compassionate heart that makes you truly special."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MEMORY VAULT SECTION (STRICTLY EMPTY BY DEFAULT) -->
+        <section id="vault" class="space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-champagneGold/30 pb-6">
+                <div>
+                    <span class="text-xs font-cinzel font-semibold text-champagneGold tracking-widest uppercase">Personal Keepsakes</span>
+                    <h2 class="font-cormorant text-4xl sm:text-5xl italic text-cashmereSilk">Pretty Felister's Memory Vault 📸</h2>
+                    <p class="text-xs text-parisianRose font-montserrat mt-1">Unlimited photo storage with local persistence & tags</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <!-- Filter Tags -->
+                    <select id="categoryFilter" onchange="renderVaultGrid()" class="px-4 py-3 rounded-full glass-card text-xs text-cashmereSilk border border-champagneGold/30 focus:outline-none cursor-pointer font-cinzel">
+                        <option value="All" class="bg-plumVelvet text-cashmereSilk">All Memories</option>
+                        <option value="Birthdays" class="bg-plumVelvet text-cashmereSilk">Birthdays 🎂</option>
+                        <option value="Trips" class="bg-plumVelvet text-cashmereSilk">Trips ✈️</option>
+                        <option value="Besties" class="bg-plumVelvet text-cashmereSilk">Besties 👯‍♀️</option>
+                        <option value="Moments" class="bg-plumVelvet text-cashmereSilk">Moments ✨</option>
+                    </select>
+
+                    <button onclick="openUploadModal()" class="px-8 py-3.5 bg-gradient-to-r from-champagneGold via-silkGold to-parisianRose text-midnightVelvet rounded-full font-cinzel font-bold text-xs tracking-widest uppercase shadow-2xl hover:scale-105 transition-all flex items-center gap-2">
+                        <i class="fas fa-plus text-xs"></i> Upload New Memory
+                    </button>
+                </div>
+            </div>
+
+            <!-- EMPTY VAULT CONTAINER GRID -->
+            <div id="memoryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[260px]">
+                <!-- Dynamically rendered JavaScript -->
+            </div>
+        </section>
+
+        <!-- 5. ELEGANT SECRET LETTER ENVELOPE -->
+        <section id="letter" class="glass-pinnacle rounded-3xl p-8 sm:p-16 text-center space-y-6 border border-champagneGold/30">
+            <span class="text-xs font-cinzel font-semibold text-champagneGold tracking-widest uppercase">Confidential Note</span>
+            <h2 class="font-cormorant text-4xl sm:text-5xl italic text-cashmereSilk">A Letter Sealed With Wax 💌</h2>
+
+            <div class="max-w-xl mx-auto cursor-pointer" onclick="unsealLetter()">
+                <div class="glass-card p-8 sm:p-10 rounded-3xl border border-champagneGold/40 hover:border-champagneGold transition-all duration-300 hover:scale-[1.01] shadow-2xl">
+                    <div id="waxSealBadge" class="w-20 h-20 rounded-full bg-gradient-to-br from-champagneGold via-silkGold to-parisianRose text-midnightVelvet flex items-center justify-center text-3xl mx-auto mb-6 shadow-xl font-cinzel font-black border-4 border-white/40 transition-transform duration-500">
+                        PF
+                    </div>
+                    <h3 id="envelopeHeading" class="font-cinzel text-lg font-bold text-cashmereSilk tracking-wider">Tap to Unseal Envelope</h3>
+                    <p id="envelopeSubhead" class="text-xs text-parisianRose font-montserrat mt-1">Written with pure admiration for Pretty Felister</p>
+
+                    <div id="secretLetterBody" class="hidden text-left mt-8 pt-8 border-t border-champagneGold/25 font-cormorant text-lg text-cashmereSilk/95 leading-relaxed space-y-5">
+                        <p class="font-playfair italic text-champagneGold text-2xl">Dearest Felister,</p>
+                        <p>I built this luxury sanctuary specifically for you—a digital sanctuary to celebrate your beauty, your warmth, and the regal charm you possess.</p>
+                        <p>May this new chapter in your life bring endless laughter, incredible adventures, and moments so special they deserve to be stored in this vault forever.</p>
+                        <p class="text-right font-cinzel font-bold text-champagneGold text-base pt-4">— Yours Admiringly ✨</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- UPLOAD MEMORY MODAL -->
+    <div id="uploadModal" class="fixed inset-0 bg-midnightVelvet/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-pinnacle max-w-md w-full rounded-3xl p-8 relative border border-champagneGold/40 shadow-2xl">
+            <button onclick="closeUploadModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-champagneGold/20 text-cashmereSilk flex items-center justify-center hover:bg-champagneGold hover:text-midnightVelvet transition">
+                ✕
+            </button>
+            <h3 class="font-cinzel text-xl font-bold text-champagneGold mb-6 text-center tracking-wider">Deposit New Memory</h3>
+
+            <form onsubmit="saveMemoryToVault(event)" class="space-y-4 font-montserrat">
+                <div>
+                    <label class="block text-[10px] font-cinzel tracking-widest text-champagneGold uppercase mb-2">Select Photo</label>
+                    <input type="file" id="photoFileInput" accept="image/*" required class="w-full text-xs text-cashmereSilk file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-cinzel file:font-bold file:bg-champagneGold file:text-midnightVelvet cursor-pointer">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-cinzel tracking-widest text-champagneGold uppercase mb-2">Caption / Title</label>
+                    <input type="text" id="captionInput" placeholder="E.g., Magical birthday dinner..." required class="w-full px-4 py-3 rounded-xl glass-card text-xs text-cashmereSilk focus:outline-none border border-champagneGold/30">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-cinzel tracking-widest text-champagneGold uppercase mb-2">Category</label>
+                        <select id="categoryInput" class="w-full px-4 py-3 rounded-xl glass-card text-xs text-cashmereSilk focus:outline-none border border-champagneGold/30 bg-plumVelvet">
+                            <option value="Birthdays">Birthdays 🎂</option>
+                            <option value="Trips">Trips ✈️</option>
+                            <option value="Besties">Besties 👯‍♀️</option>
+                            <option value="Moments">Moments ✨</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-cinzel tracking-widest text-champagneGold uppercase mb-2">Date Tag</label>
+                        <input type="text" id="dateInput" placeholder="E.g., Nov 2026" class="w-full px-4 py-3 rounded-xl glass-card text-xs text-cashmereSilk focus:outline-none border border-champagneGold/30">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-champagneGold via-silkGold to-parisianRose text-midnightVelvet font-cinzel font-bold text-xs tracking-widest uppercase rounded-xl shadow-xl hover:opacity-95 transition mt-4">
+                    Save Memory Forever ✨
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX ZOOM MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 bg-midnightVelvet/90 backdrop-blur-xl z-50 hidden flex items-center justify-center p-4" onclick="closeLightboxModal()">
+        <div class="max-w-3xl w-full text-center relative" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Zoomed Memory" class="max-h-[78vh] mx-auto rounded-2xl border border-champagneGold/40 shadow-2xl object-contain">
+            <p id="lightboxCaption" class="mt-4 font-cormorant italic text-2xl text-champagneGold"></p>
+            <p id="lightboxSub" class="text-xs font-montserrat text-parisianRose mt-1"></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        /* LOCAL STORAGE VAULT STATE - STARTS STRICTLY EMPTY WITH 0 DEMO PICS */
+        let memoryItems = JSON.parse(localStorage.getItem('pretty_felister_master_vault')) || [];
+
+        function persistVault() {
+            localStorage.setItem('pretty_felister_master_vault', JSON.stringify(memoryItems));
+        }
+
+        /* Render Gallery Grid */
+        function renderVaultGrid() {
+            const grid = document.getElementById('memoryGrid');
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            grid.innerHTML = '';
+
+            const filteredItems = categoryFilter === 'All' 
+                ? memoryItems 
+                : memoryItems.filter(item => item.category === categoryFilter);
+
+            /* IF EMPTY: Render Empty State Dropzone */
+            if (filteredItems.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full glass-card rounded-3xl p-12 text-center space-y-4 border border-dashed border-champagneGold/40">
+                        <div class="w-16 h-16 rounded-full bg-champagneGold/10 text-champagneGold flex items-center justify-center text-3xl mx-auto border border-champagneGold/30">
+                            📸
+                        </div>
+                        <h3 class="font-cinzel text-lg font-bold text-cashmereSilk tracking-wider">The Memory Vault is Currently Empty</h3>
+                        <p class="text-xs text-parisianRose font-montserrat max-w-sm mx-auto">
+                            Add photos to create a personalized memory collection for Pretty Felister.
+                        </p>
+                        <button onclick="openUploadModal()" class="px-8 py-3.5 bg-gradient-to-r from-champagneGold to-parisianRose text-midnightVelvet rounded-full font-cinzel font-bold text-xs tracking-widest uppercase shadow-lg hover:scale-105 transition-all inline-flex items-center gap-2">
+                            <i class="fas fa-plus text-xs"></i> Upload First Memory
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            /* RENDER POLAROID PHOTO CARDS */
+            filteredItems.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-4 rounded-2xl border border-champagneGold/30 hover:border-champagneGold transition-all duration-300 pop-entry flex flex-col justify-between group';
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden rounded-xl aspect-[4/5] mb-3 cursor-pointer" onclick="openLightboxModal('${item.image}', '${escapeJs(item.caption)}', '${item.category} • ${item.date}')">
+                        <img src="${item.image}" alt="Memory" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-midnightVelvet/80 text-champagneGold text-[10px] font-cinzel border border-champagneGold/30">
+                            ${item.category}
+                        </span>
+                    </div>
+                    <div>
+                        <h4 class="font-cinzel text-xs font-bold text-cashmereSilk line-clamp-1">${item.caption}</h4>
+                        <div class="flex items-center justify-between text-[11px] text-champagneGold font-montserrat mt-2 pt-2 border-t border-white/10">
+                            <span>📅 ${item.date || 'Cherished'}</span>
+                            <button onclick="removeMemoryItem(${item.id})" class="text-parisianRose/60 hover:text-red-400 transition">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function escapeJs(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        function saveMemoryToVault(e) {
+            e.preventDefault();
+            const photoInput = document.getElementById('photoFileInput');
+            const caption = document.getElementById('captionInput').value;
+            const category = document.getElementById('categoryInput').value;
+            const date = document.getElementById('dateInput').value || 'Unforgettable';
+
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const newItem = {
+                        id: Date.now(),
+                        image: evt.target.result,
+                        caption: caption,
+                        category: category,
+                        date: date
+                    };
+                    memoryItems.unshift(newItem);
+                    persistVault();
+                    renderVaultGrid();
+                    closeUploadModal();
+                    triggerToastConfetti();
+                    document.getElementById('captionInput').value = '';
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            }
+        }
+
+        function removeMemoryItem(id) {
+            memoryItems = memoryItems.filter(m => m.id !== id);
+            persistVault();
+            renderVaultGrid();
+        }
+
+        /* 3D Flip Card Handler */
+        function flipCard(cardEl) {
+            const inner = cardEl.querySelector('.transform-style-3d');
+            inner.classList.toggle('flip-card-flipped');
+        }
+
+        /* Candle Blowing Handler */
+        let isCandleOut = false;
+        function toggleCandle() {
+            const flame = document.getElementById('cakeFlame');
+            const banner = document.getElementById('wishStatusBanner');
+
+            if (!isCandleOut) {
+                flame.style.opacity = '0';
+                banner.innerText = '✨ Wish Released! May all your dreams come true Pretty Felister 🥂';
+                banner.className = 'mt-6 inline-block px-8 py-3 rounded-full bg-champagneGold text-midnightVelvet font-cinzel text-xs tracking-wider font-bold shadow-xl';
+                isCandleOut = true;
+                triggerToastConfetti();
+            } else {
+                flame.style.opacity = '1';
+                banner.innerText = 'Candle is glowing ✨ Tap flame to blow out';
+                banner.className = 'mt-6 inline-block px-8 py-3 rounded-full bg-champagneGold/10 border border-champagneGold/40 text-cashmereSilk font-cinzel text-xs tracking-wider';
+                isCandleOut = false;
+            }
+        }
+
+        /* Wax Seal Unseal Handler */
+        let isUnsealed = false;
+        function unsealLetter() {
+            const body = document.getElementById('secretLetterBody');
+            const title = document.getElementById('envelopeHeading');
+            const badge = document.getElementById('waxSealBadge');
+
+            if (!isUnsealed) {
+                body.classList.remove('hidden');
+                title.innerText = 'Unsealed Note';
+                badge.innerText = '🌸';
+                isUnsealed = true;
+                triggerToastConfetti();
+            } else {
+                body.classList.add('hidden');
+                title.innerText = 'Tap to Unseal Envelope';
+                badge.innerText = 'PF';
+                isUnsealed = false;
+            }
+        }
+
+        /* Modal Trigger Functions */
+        function openUploadModal() { document.getElementById('uploadModal').classList.remove('hidden'); }
+        function closeUploadModal() { document.getElementById('uploadModal').classList.add('hidden'); }
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+        function openLightboxModal(img, caption, sub) {
+            document.getElementById('lightboxImg').src = img;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('lightboxSub').innerText = sub;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+        function closeLightboxModal() { document.getElementById('lightboxModal').classList.add('hidden'); }
+
+        /* Confetti Burst */
+        function triggerToastConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 90,
+                    origin: { y: 0.6 },
+                    colors: ['#E5C158', '#F7E7CE', '#E0A9AF', '#F4EAD4']
+                });
+            }
+        }
+
+        /* Web Audio API - Champagne Chimes Synthesizer */
+        let audioContext = null;
+        let isAudioPlaying = false;
+        let audioTimer = null;
+
+        function toggleAudio() {
+            const icon = document.getElementById('audioBtnIcon');
+            const title = document.getElementById('audioTitle');
+
+            if (!isAudioPlaying) {
+                startAudioLoop();
+                isAudioPlaying = true;
+                icon.innerText = '🎵';
+                title.innerText = 'Playing Audio';
+            } else {
+                stopAudioLoop();
+                isAudioPlaying = false;
+                icon.innerText = '✨';
+                title.innerText = 'Champagne Chimes';
+            }
+        }
+
+        function startAudioLoop() {
+            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const chordNotes = [329.63, 392.00, 493.88, 587.33, 659.25]; // E, G, B, D, E pentatonic scale
+
+            function playHarmonicChime() {
+                if (!isAudioPlaying) return;
+                const freq = chordNotes[Math.floor(Math.random() * chordNotes.length)];
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+                gain.gain.setValueAtTime(0.04, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 3.5);
+
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+
+                osc.start();
+                osc.stop(audioContext.currentTime + 3.5);
+            }
+
+            playHarmonicChime();
+            audioTimer = setInterval(playHarmonicChime, 1500);
+        }
+
+        function stopAudioLoop() {
+            if (audioTimer) clearInterval(audioTimer);
+        }
+
+        /* Interactive Sakura & Star Sparkle Physics Canvas */
+        const canvas = document.getElementById('animeCanvas');
+        const ctx = canvas.getContext('2d');
+        let particleList = [];
+
+        function resizeCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvasSize);
+        resizeCanvasSize();
+
+        function createParticles() {
+            particleList = [];
+            // Falling Sakura Petals
+            for (let i = 0; i < 35; i++) {
+                particleList.push({
+                    type: 'petal',
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    size: Math.random() * 8 + 4,
+                    vy: Math.random() * 0.8 + 0.3,
+                    vx: Math.random() * 0.6 - 0.3,
+                    sway: Math.random() * Math.PI * 2,
+                    rotation: Math.random() * 360,
+                    vRotation: Math.random() * 1.6 - 0.8
+                });
+            }
+            // Shimmering Golden Stars
+            for (let i = 0; i < 30; i++) {
+                particleList.push({
+                    type: 'star',
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    size: Math.random() * 2.2 + 0.8,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.018 + 0.006
+                });
+            }
+        }
+        createParticles();
+
+        /* Interactive Cursor Sparkle Trail */
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.45) {
+                particleList.push({
+                    type: 'cursorSparkle',
+                    x: e.clientX,
+                    y: e.clientY,
+                    size: Math.random() * 4 + 2,
+                    vy: Math.random() * 0.4 - 0.2,
+                    vx: Math.random() * 0.4 - 0.2,
+                    alpha: 1,
+                    fade: 0.028
+                });
+            }
+        });
+
+        function runParticleAnimation() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particleList.forEach((p, idx) => {
+                if (p.type === 'petal') {
+                    p.sway += 0.02;
+                    p.x += p.vx + Math.sin(p.sway) * 0.6;
+                    p.y += p.vy;
+                    p.rotation += p.vRotation;
+
+                    if (p.y > canvas.height + 15) p.y = -15;
+                    if (p.x < -15 || p.x > canvas.width + 15) p.x = Math.random() * canvas.width;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, p.size, p.size / 2.3, 0, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(224, 169, 175, 0.6)';
+                    ctx.fill();
+                    ctx.restore();
+
+                } else if (p.type === 'star') {
+                    p.alpha += p.speed;
+                    if (p.alpha > 1 || p.alpha < 0.2) p.speed = -p.speed;
+
+                    ctx.save();
+                    ctx.globalAlpha = Math.abs(p.alpha);
+                    ctx.fillStyle = '#E5C158';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+
+                } else if (p.type === 'cursorSparkle') {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.alpha -= p.fade;
+
+                    if (p.alpha <= 0) {
+                        particleList.splice(idx, 1);
+                        return;
+                    }
+
+                    ctx.save();
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fillStyle = '#F7E7CE';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            });
+
+            requestAnimationFrame(runParticleAnimation);
+        }
+        runParticleAnimation();
+
+        /* Initial Load */
+        window.onload = function() {
+            renderVaultGrid();
+        };
+    </script>
+</body>
+</html>
